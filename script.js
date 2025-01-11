@@ -4,6 +4,10 @@ const bell = new Audio('https://cdn.freesound.org/previews/415/415510_5121236-lq
 bell.volume = 0.5;  // Set to 50% volume for a gentler sound
 bell.load();
 
+const lofiMusic = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3');
+lofiMusic.volume = 0.3;
+lofiMusic.loop = true;
+
 let WORK_TIME = 25 * 60;  // Default to 25 minutes
 let timeLeft;
 let timerId = null;
@@ -18,6 +22,7 @@ const resetButton = document.getElementById('reset');
 const statusText = document.getElementById('status-text');
 const customMinutes = document.getElementById('custom-minutes');
 const setCustomButton = document.getElementById('set-custom');
+const musicButton = document.getElementById('music-button');
 
 function toggleTimer() {
     if (isRunning) {
@@ -118,6 +123,17 @@ function updateTimer() {
     document.title = `${displayTime} - Pomodoro Timer`;
 }
 
+function toggleMusic() {
+    if (lofiMusic.paused) {
+        lofiMusic.play()
+            .catch(error => console.log('Error playing music:', error));
+        musicButton.textContent = '🔇 Stop Music';
+    } else {
+        lofiMusic.pause();
+        musicButton.textContent = '🎵 Play Music';
+    }
+}
+
 // Update event listeners
 startButton.addEventListener('click', toggleTimer);
 resetButton.addEventListener('click', resetTimer);
@@ -127,6 +143,7 @@ customMinutes.addEventListener('keypress', (e) => {
         setCustomTime();
     }
 });
+musicButton.addEventListener('click', toggleMusic);
 
 // Initialize
 timeLeft = WORK_TIME;
