@@ -1,8 +1,8 @@
 // Remove these constants as we don't need them anymore
 const BREAK_TIME = 5 * 60;       // 5 minutes in seconds
-const airhorn = new Audio('https://www.myinstants.com/media/sounds/air-horn-sound-effect.mp3');
-airhorn.volume = 0.8;
-airhorn.load();
+const bell = new Audio('https://cdn.freesound.org/previews/415/415510_5121236-lq.mp3');
+bell.volume = 0.5;  // Set to 50% volume for a gentler sound
+bell.load();
 
 let WORK_TIME = 25 * 60;  // Default to 25 minutes
 let timeLeft;
@@ -31,8 +31,8 @@ function toggleTimer() {
 }
 
 function playSound() {
-    airhorn.currentTime = 0;  // Reset the sound to start
-    airhorn.play()
+    bell.currentTime = 0;  // Reset the sound to start
+    bell.play()
         .catch(error => {
             console.log('Error playing sound:', error);
             alert('Sound failed to play - make sure your browser allows sound autoplay!');
@@ -134,3 +134,13 @@ updateDisplay();
 
 // Also update the initial text when the page loads
 statusText.textContent = '"You may delay, but time will not." – Benjamin Franklin'; 
+
+// Add this to handle sound permissions on page load
+document.addEventListener('DOMContentLoaded', function() {
+    bell.play().then(() => {
+        bell.pause();
+        bell.currentTime = 0;
+    }).catch(error => {
+        console.log('Autoplay prevented - user will need to interact with page first');
+    });
+}); 
