@@ -67,4 +67,20 @@ input {
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.6);
+}
+
+#music-button {
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#music-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 } 
