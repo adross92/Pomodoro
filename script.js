@@ -3,9 +3,6 @@ const BREAK_TIME = 5 * 60;       // 5 minutes in seconds
 const airhorn = new Audio('https://www.myinstants.com/media/sounds/air-horn-sound-effect.mp3');
 airhorn.volume = 0.8;
 airhorn.load();
-const chime = new Audio('https://cdn.freesound.org/previews/411/411089_5121236-lq.mp3'); // Gentle wind chime sound
-chime.volume = 0.5;
-chime.load();
 
 let WORK_TIME = 25 * 60;  // Default to 25 minutes
 let timeLeft;
@@ -57,9 +54,8 @@ function updateDisplay() {
 function switchMode() {
     isWorkTime = !isWorkTime;
     timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
-    statusText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
+    statusText.textContent = '"You may delay, but time will not." – Benjamin Franklin';
     updateDisplay();
-    chime.play().catch(error => console.log('Error playing chime:', error));
 }
 
 function startTimer() {
@@ -135,3 +131,6 @@ customMinutes.addEventListener('keypress', (e) => {
 // Initialize
 timeLeft = WORK_TIME;
 updateDisplay(); 
+
+// Also update the initial text when the page loads
+statusText.textContent = '"You may delay, but time will not." – Benjamin Franklin'; 
