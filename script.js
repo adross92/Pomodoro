@@ -3,6 +3,9 @@ const BREAK_TIME = 5 * 60;       // 5 minutes in seconds
 const airhorn = new Audio('https://www.myinstants.com/media/sounds/air-horn-sound-effect.mp3');
 airhorn.volume = 0.8;
 airhorn.load();
+const chime = new Audio('https://cdn.freesound.org/previews/411/411089_5121236-lq.mp3'); // Gentle wind chime sound
+chime.volume = 0.5;
+chime.load();
 
 let WORK_TIME = 25 * 60;  // Default to 25 minutes
 let timeLeft;
@@ -50,7 +53,9 @@ function switchMode() {
     isWorkTime = !isWorkTime;
     timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
     statusText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
+    document.title = isWorkTime ? '🎯 Work Time - Pomodoro' : '☕ Break Time - Pomodoro';
     updateDisplay();
+    chime.play().catch(error => console.log('Error playing chime:', error));
 }
 
 function startTimer() {
@@ -70,6 +75,7 @@ function startTimer() {
             isRunning = false;
             startButton.textContent = 'Start';
             playSound();
+            document.title = isWorkTime ? '⏰ Time is up!' : '⏰ Break is over!';
             alert(isWorkTime ? 'Time is up!' : 'Break is over!');
             switchMode();
         }
@@ -99,6 +105,17 @@ function setCustomTime() {
     WORK_TIME = minutes * 60;
     resetTimer();
     customMinutes.value = ''; // Clear the input
+}
+
+function updateTimer() {
+    // Format the time for display
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const displayTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    // Update both the timer display and the page title
+    document.getElementById('timer').textContent = displayTime;
+    document.title = `${displayTime} - Pomodoro Timer`;
 }
 
 // Update event listeners
