@@ -92,7 +92,7 @@ function resetTimer() {
     timerId = null;
     isWorkTime = true;
     timeLeft = WORK_TIME;
-    statusText.textContent = 'Work Time';
+    statusText.textContent = '"You may delay, but time will not." – Benjamin Franklin';
     updateDisplay();
 }
 
