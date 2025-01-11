@@ -45,15 +45,19 @@ function playSound() {
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
+    const displayTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
     minutesDisplay.textContent = minutes.toString().padStart(2, '0');
     secondsDisplay.textContent = seconds.toString().padStart(2, '0');
+    
+    // Just show the time in the title
+    document.title = displayTime;
 }
 
 function switchMode() {
     isWorkTime = !isWorkTime;
     timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
     statusText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
-    document.title = isWorkTime ? '🎯 Work Time - Pomodoro' : '☕ Break Time - Pomodoro';
     updateDisplay();
     chime.play().catch(error => console.log('Error playing chime:', error));
 }
