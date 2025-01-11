@@ -1,82 +1,70 @@
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    /* Solarpunk gradient background with natural colors */
+    background: linear-gradient(135deg, #1a4f2e, #2d936c, #88c425);
+    font-family: 'Quicksand', sans-serif; /* More organic font */
+    min-height: 100vh;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #ffffff;
-    color: #000000;
 }
 
 .container {
-    text-align: center;
+    /* Glass effect container */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     padding: 2rem;
-    max-width: 400px;
-    width: 100%;
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 0 80px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .timer {
     font-size: 6rem;
-    font-weight: 300;
-    margin: 2rem 0;
-    letter-spacing: -2px;
+    /* Glass effect on numbers */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
 }
 
-.controls button {
-    font-size: 1.1rem;
-    margin: 0 0.5rem;
-    padding: 0.8rem 2rem;
-    cursor: pointer;
-    background-color: #000000;
+button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 10px 20px;
     color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.2s;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
-.controls button:hover {
-    background-color: #333333;
+button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 #status-text {
-    font-size: 1rem;
-    color: #666666;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.custom-time {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-#custom-minutes {
-    width: 100px;
-    padding: 0.8rem;
-    font-size: 1.1rem;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#custom-minutes:focus {
-    outline: none;
-    border-color: #333333;
-}
-
-#set-custom {
-    font-size: 1.1rem;
-    padding: 0.8rem 1.5rem;
-    cursor: pointer;
-    background-color: #000000;
     color: white;
-    border: none;
-    border-radius: 5px;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#set-custom:hover {
-    background-color: #333333;
+input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 8px;
+    color: white;
+    margin-right: 10px;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 } 
